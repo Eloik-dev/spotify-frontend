@@ -1,0 +1,8 @@
+@use '@/_variables';
+
+.sidebar {
+    grid-area: sidebar;
+    background-color: variables.$sidebar-background;
+    margin: variables.$sidebar-margin;
+    border-radius: variables.$sidebar-border-radius;
+}

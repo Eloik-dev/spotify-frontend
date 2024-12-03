@@ -1,0 +1,16 @@
+.authentication-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(rgba(255, 255, 255, 0.1) 0%, rgb(0, 0, 0) 100%);
+
+    .inner-box {
+        height: 60%;
+        min-width: 10rem;
+        width: 40rem;
+        border-radius: 10px;
+
+        background-color: #121212;
+    }
+}

@@ -1,0 +1,8 @@
+@use '@/_variables';
+
+main {
+    display: grid;
+    grid-template-areas: "sidebar playlist";
+    grid-template-columns: variables.$sidebar-width 1fr;
+    grid-template-rows: 100vh;
+}
