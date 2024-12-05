@@ -10,7 +10,7 @@
     border-radius: variables.$sidebar-border-radius;
     padding: 30px;
 
-    button {
+    #boutonSignout {
         background-color: transparent;
         border: none;
         padding: 10px;
@@ -20,11 +20,5 @@
             cursor: pointer;
             background-color: variables.$button-hover-background;
         }
-    }
-
-    #boutonsTop {
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
     }
 }

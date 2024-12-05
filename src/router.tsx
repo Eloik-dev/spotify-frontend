@@ -1,8 +1,7 @@
 import { useMemo } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Layout from './views/Layout/Layout';
-import Login from './views/Authentication/Login';
-import Register from './views/Authentication/Register';
+import Home from './views/Home/Home';
+import Login from './views/Login/Login';
 
 /**
  * Cette vue affichera le contenu d'une liste de lecture sélectionnée
@@ -19,12 +18,8 @@ export default function Router() {
                 element: <Login />
             },
             {
-                path: '/register',
-                element: <Register />
-            },
-            {
                 path: '/',
-                element: <Layout />
+                element: <Home />
             }
         ]
     }, [])
