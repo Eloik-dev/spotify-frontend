@@ -20,6 +20,10 @@ export default function Router() {
             {
                 path: '/',
                 element: <Home />
+            },
+            {
+                path: '/listes/:id',
+                element: <Home />
             }
         ]
     }, [])

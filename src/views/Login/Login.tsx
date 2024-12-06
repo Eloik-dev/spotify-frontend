@@ -20,10 +20,8 @@ export default function Login() {
 
   useEffect(() => {
     if (loading) {
-      // maybe trigger a loading screen
       return;
     }
-    console.log(user)
     if (user) navigate('/');
   }, [user, loading]);
 
@@ -46,11 +44,11 @@ export default function Login() {
         <div className={styles['champs-container']}>
           <div className={styles['champ']}>
             <label htmlFor="email">Courriel</label>
-            <OutlinedInput name='email' placeholder="Courriel" onChange={(e) => setEmail(e.target.value)}></OutlinedInput>
+            <OutlinedInput type='email' name='email' placeholder="Courriel" onChange={(e) => setEmail(e.target.value)}></OutlinedInput>
           </div>
           <div className={styles['champ']}>
             <label htmlFor="password">Mot de passe</label>
-            <OutlinedInput name='password' placeholder="Mot de passe" onChange={(e) => setPassword(e.target.value)}></OutlinedInput>
+            <OutlinedInput type='password' name='password' placeholder="Mot de passe" onChange={(e) => setPassword(e.target.value)}></OutlinedInput>
           </div>
         </div>
         <Button type='submit' id={styles['boutonConnexion']} variant='outlined'>Se connecter</Button>

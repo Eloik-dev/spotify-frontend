@@ -2,8 +2,7 @@
  * Variables de la barre de navigation
  */
 $sidebar-background: #121212;
-$sidebar-width: 100px;
-$sidebar-margin: 10px;
+$sidebar-width: 75px;
 $sidebar-border-radius: 5px;
 
 /**
@@ -16,3 +15,16 @@ $home-padding: 10px;
  * Variables pour les boutons custom
  */
 $button-hover-background: #222;
+
+/**
+ * Variables pour la barre supérieure
+ */
+$topbar-background: #121212;
+$topbar-border-radius: 5px;
+
+/**
+ * Variables pour les affichages de cartes
+ */
+$card-background: #121212;
+$card-hover-background: #222;
+$card-border-radius: 5px;

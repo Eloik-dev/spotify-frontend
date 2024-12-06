@@ -1,0 +1,16 @@
+.liste-container {
+    grid-area: content;
+
+    #emptyMessage {
+        text-align: center;
+        padding: 40px 0;
+        width: 100%;
+    }
+
+    #listes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        padding: 15px 10px;
+    }
+}

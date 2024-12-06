@@ -1,0 +1,22 @@
+@use '@/_variables';
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: variables.$topbar-background;
+    border-radius: variables.$topbar-border-radius;
+    width: 100%;
+    padding: 10px;
+
+    #topbarContent {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+
+        button {
+            min-height: 40px;
+            min-width: 20px;
+        }
+    }
+}

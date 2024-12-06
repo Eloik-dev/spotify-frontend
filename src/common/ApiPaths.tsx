@@ -1,27 +1,16 @@
 export default {
-    Playlists: {
-        GetAll: '/api/playlists',
-        GetOne: '/api/playlists/:id',
-        Add: '/api/playlists/add',
-        Update: '/api/playlists/update',
-        Delete: '/api/playlists/delete/:id',
+    Liste: {
+        GetAll: '/api/listes',
+        Get: '/api/listes',
+        Search: '/api/listes/search',
+        Create: '/api/listes/create',
+        Update: '/api/listes/update',
+        Delete: '/api/listes/delete',
     },
     Musiques: {
-        Add: '/api/musiques/add',
+        Search: '/api/musiques/search',
+        Create: '/api/musiques/create',
         Update: '/api/musiques/update',
-        Delete: '/api/musiques/delete/:id',
+        Delete: '/api/musiques/delete',
     },
 } as const;
-
-/**
- * Playlist
- *  - Retrouver toutes les playlists
- *  - Retrouver une playlist
- *  - Ajouter une playlist
- *  - Supprimer une playlist
- * 
- * Musique
- *  - Ajouter une musique pour une playlist
- *  - Modifier une musique pour une playlist
- *  - Supprimer une musique d'une playlist
- */

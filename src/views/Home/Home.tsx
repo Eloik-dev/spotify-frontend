@@ -1,11 +1,13 @@
 import { useAuthState } from "react-firebase-hooks/auth";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import PlaylistContainer from "../../container/PlaylistContainer/PlaylistContainer";
+import ListeContainer from "../../container/ListeContainer/ListeContainer";
 import './Home.module.scss'
 import { auth } from "../../firebase";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { useEffect } from "react";
 import UtilisateurContext from "../../context/UtilisateurContext";
+import styles from './Home.module.scss';
+import MusiquesContainer from "../../container/MusiquesContainer/MusiquesContainer";
 
 /**
  * Cette vue contrôlera l'affichage de la barre de navigation et la liste de lecture
@@ -13,6 +15,7 @@ import UtilisateurContext from "../../context/UtilisateurContext";
 export default function Home() {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     // si loading = true, ça veut dire que le firebase n'est pas encore prêt.
@@ -24,18 +27,37 @@ export default function Home() {
   }, [user, loading]);
 
   if (loading) {
-    return <div>Chargement en cours...</div>;
+    return (
+      <div className={styles['status-text-container']}>
+        <div id={styles['statusText']}>Chargement en cours...</div>
+      </div>
+    );
   }
 
-  if (!user) { 
-    return <div>Redirection vers la page de connexion...</div>; 
+  if (!user) {
+    return (
+      <div className={styles['status-text-container']}>
+        <div id={styles['statusText']}>Redirection vers la page de connexion...</div>
+      </div>
+    );
   }
+
+  /**
+   * Fait le rendu de la page selon l'url
+   * @returns 
+   */
+  const renderContainer = () => {
+    if (location.pathname.startsWith('/listes') && location.pathname.split('/').length > 2) {
+      return <MusiquesContainer />;
+    }
+    return <ListeContainer />;
+  };
 
   return (
     <main>
       <UtilisateurContext.Provider value={{ utilisateur: user }}>
         <Sidebar />
-        <PlaylistContainer />
+        {renderContainer()}
       </UtilisateurContext.Provider>
     </main>
   )

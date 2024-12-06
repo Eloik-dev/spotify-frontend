@@ -142,4 +142,15 @@ export default class MusiqueEntity {
         this._datePublication = datePublication;
         return this;
     }
+
+    public static getEntity(data: any): MusiqueEntity {
+        return new MusiqueEntity()
+            .setNom(data.nom || '')
+            .setLien(data.lien || '')
+            .setArtistes(data.artistes || [])
+            .setLikes(data.likes || 0)
+            .setDislikes(data.dislikes || 0)
+            .setArchive(data.archive || false)
+            .setDatePublication(new Date(data.datePublication || Date.now()));
+    };
 }

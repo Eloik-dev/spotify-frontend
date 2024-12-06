@@ -1,11 +1,22 @@
 @use '@/_variables';
 
+.status-text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    #statusText {
+        font-size: 2rem;
+    }
+}
+
 main {
     display: grid;
-    grid-template-areas: "sidebar playlist";
+    grid-template-areas: "sidebar content";
     grid-template-columns: variables.$sidebar-width 1fr;
-    grid-template-rows: 100vh;
-    gap: 30px;
+    gap: 10px;
+    height: 100%;
     background-color: variables.$home-background;
     padding: variables.$home-padding;
 }
