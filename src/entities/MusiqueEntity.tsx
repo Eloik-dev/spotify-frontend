@@ -1,4 +1,5 @@
 export default class MusiqueEntity {
+    private _id: string = "";
     private _nom: string = "";
     private _lien: string = "";
     private _artistes: string[] = [];
@@ -15,6 +16,23 @@ export default class MusiqueEntity {
         if (dislikes) this._dislikes = dislikes;
         if (archive) this._archive = archive;
         if (datePublication) this._datePublication = datePublication;
+    }
+
+    /**
+     * GET pour le id MongoDB
+     * @return L'id de la liste de lecture
+     */
+    public getId(): string {
+        return this._id;
+    }
+
+    /**
+     * SET pour le id MongoDB
+     * @param id Le id de la liste de lecture
+     */
+    private setId(id: string): this {
+        this._id = id;
+        return this;
     }
 
     /**
@@ -145,6 +163,7 @@ export default class MusiqueEntity {
 
     public static getEntity(data: any): MusiqueEntity {
         return new MusiqueEntity()
+            .setId(data._id || '')
             .setNom(data.nom || '')
             .setLien(data.lien || '')
             .setArtistes(data.artistes || [])

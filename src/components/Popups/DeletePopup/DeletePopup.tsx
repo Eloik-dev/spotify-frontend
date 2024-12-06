@@ -2,6 +2,7 @@ import { FC, useContext } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import useRequest from '../../../hooks/useRequest';
 import ListeContainerContext from '../../../context/ListeContainerContext';
+import MusiqueContainerContext from '../../../context/MusiqueContainerContext';
 
 interface IDeletePopup {
     isOpen: boolean;
@@ -13,6 +14,7 @@ interface IDeletePopup {
 
 const DeletePopup: FC<IDeletePopup> = ({ isOpen, setIsOpen, url, id, message }) => {
     const { getListes } = useContext(ListeContainerContext);
+    const { getMusiques } = useContext(MusiqueContainerContext);
     const { deleteRequest } = useRequest();
 
     /**
@@ -23,6 +25,7 @@ const DeletePopup: FC<IDeletePopup> = ({ isOpen, setIsOpen, url, id, message }) 
 
         setIsOpen(false);
         getListes();
+        getMusiques();
     };
 
     return (

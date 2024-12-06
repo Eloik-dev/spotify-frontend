@@ -42,11 +42,11 @@ export default function Login() {
         </div>
         <hr className={styles['separateur']} />
         <div className={styles['champs-container']}>
-          <div className={styles['champ']}>
+          <div className={'champ'}>
             <label htmlFor="email">Courriel</label>
             <OutlinedInput type='email' name='email' placeholder="Courriel" onChange={(e) => setEmail(e.target.value)}></OutlinedInput>
           </div>
-          <div className={styles['champ']}>
+          <div className={'champ'}>
             <label htmlFor="password">Mot de passe</label>
             <OutlinedInput type='password' name='password' placeholder="Mot de passe" onChange={(e) => setPassword(e.target.value)}></OutlinedInput>
           </div>

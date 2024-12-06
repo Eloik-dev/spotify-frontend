@@ -29,34 +29,32 @@ const CreateListePopup: FC<ICreateListePopupProps> = ({ isOpen, setIsOpen }) => 
     }
 
     return (
-        <div>
-            <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
-                <DialogTitle>{"Créer une nouvelle playlist"}</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        Veuillez entrer un nom pour votre nouvelle liste de lecture.
-                    </DialogContentText>
-                    <div className={styles['champ']}>
-                        <label htmlFor="nom">Nom</label>
-                        <OutlinedInput
-                            type='text'
-                            name='nom'
-                            placeholder="Nom"
-                            value={nom}
-                            onChange={(e) => setNom(e.target.value)}
-                        />
-                    </div>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={() => setIsOpen(false)} color="primary">
-                        Annuler
-                    </Button>
-                    <Button onClick={handleCreateListe} color="primary" autoFocus>
-                        Confirmer
-                    </Button>
-                </DialogActions>
-            </Dialog>
-        </div>
+        <Dialog className='popup' open={isOpen} onClose={() => setIsOpen(false)}>
+            <DialogTitle>{"Créer une nouvelle playlist"}</DialogTitle>
+            <DialogContent className='dialog-content'>
+                <DialogContentText>
+                    Veuillez entrer un nom pour votre nouvelle liste de lecture.
+                </DialogContentText>
+                <div className={'champ'}>
+                    <label htmlFor="nom">Nom</label>
+                    <OutlinedInput
+                        type='text'
+                        name='nom'
+                        placeholder="Nom"
+                        value={nom}
+                        onChange={(e) => setNom(e.target.value)}
+                    />
+                </div>
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={() => setIsOpen(false)} color="primary">
+                    Annuler
+                </Button>
+                <Button onClick={handleCreateListe} color="primary" autoFocus>
+                    Confirmer
+                </Button>
+            </DialogActions>
+        </Dialog>
     );
 };
 

@@ -45,20 +45,18 @@ export default function ListeContainer() {
 
   return (
     <ListeContainerContext.Provider value={{ getListes }}>
-      <div className={styles['liste-container']}>
-        <CreateListePopup isOpen={createListeIsOpen} setIsOpen={setCreateListeIsOpen} />
-        <Topbar onSearch={handleSearch} onCreate={handleCreateListe} />
-        <div id={styles['listes']}>
-          {listes.length === 0 ? (
-            <div id={styles['emptyMessage']}>
-              Aucune liste trouvée
-            </div>
-          ) : (
-            listes.map((liste, idx) => (
-              <ListeCard key={idx} liste={liste} />
-            ))
-          )}
-        </div>
+      <CreateListePopup isOpen={createListeIsOpen} setIsOpen={setCreateListeIsOpen} />
+      <Topbar onSearch={handleSearch} onCreate={handleCreateListe} />
+      <div id={styles['listes']}>
+        {listes.length === 0 ? (
+          <div id={styles['emptyMessage']}>
+            Aucune liste trouvée
+          </div>
+        ) : (
+          listes.map((liste, idx) => (
+            <ListeCard key={idx} liste={liste} />
+          ))
+        )}
       </div>
     </ListeContainerContext.Provider>
   );

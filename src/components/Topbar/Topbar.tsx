@@ -18,7 +18,7 @@ const Topbar: FC<ITopbar> = ({ onPrevious, onSearch, onCreate }) => {
     <div className={styles['topbar']}>
       {onPrevious ?
         <Button onClick={onPrevious}>
-          <FontAwesomeIcon fontSize={25} icon={faAngleLeft} />
+          <FontAwesomeIcon fontSize={20} icon={faAngleLeft} />
         </Button>
         : <div />}
 

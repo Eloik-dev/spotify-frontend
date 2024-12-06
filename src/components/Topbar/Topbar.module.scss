@@ -1,6 +1,8 @@
 @use '@/_variables';
 
 .topbar {
+    grid-area: topbar;
+
     display: flex;
     justify-content: space-between;
     background-color: variables.$topbar-background;

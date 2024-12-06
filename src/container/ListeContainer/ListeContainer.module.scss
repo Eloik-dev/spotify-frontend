@@ -1,16 +1,18 @@
-.liste-container {
+@use '@/_variables';
+
+#emptyMessage {
+    text-align: center;
+    padding: 40px 0;
+    width: 100%;
+}
+
+#listes {
     grid-area: content;
 
-    #emptyMessage {
-        text-align: center;
-        padding: 40px 0;
-        width: 100%;
-    }
-
-    #listes {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 16px;
-        padding: 15px 10px;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    gap: 15px;
+    height: fit-content;
+    max-height: calc(100vh - variables.$topbar-height - 20px);
 }

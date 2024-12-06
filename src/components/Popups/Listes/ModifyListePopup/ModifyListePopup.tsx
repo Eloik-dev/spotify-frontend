@@ -33,34 +33,32 @@ const ModifyListePopup: FC<IModifyListePopupProps> = ({ isOpen, setIsOpen, liste
     };
 
     return (
-        <div>
-            <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
-                <DialogTitle>{"Modifier le nom de la liste"}</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        Veuillez entrer un nouveau nom pour votre liste de lecture.
-                    </DialogContentText>
-                    <div className={styles['champ']}>
-                        <label htmlFor="nom">Nom</label>
-                        <OutlinedInput
-                            type='text'
-                            name='nom'
-                            placeholder="Nom"
-                            value={nom}
-                            onChange={(e) => setNom(e.target.value)}
-                        />
-                    </div>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={() => setIsOpen(false)} color="primary">
-                        Annuler
-                    </Button>
-                    <Button onClick={handleUpdateListe} color="primary" autoFocus>
-                        Confirmer
-                    </Button>
-                </DialogActions>
-            </Dialog>
-        </div>
+        <Dialog className='popup' open={isOpen} onClose={() => setIsOpen(false)}>
+            <DialogTitle>{"Modifier le nom de la liste"}</DialogTitle>
+            <DialogContent className='dialog-content'>
+                <DialogContentText>
+                    Veuillez entrer un nouveau nom pour votre liste de lecture.
+                </DialogContentText>
+                <div className={'champ'}>
+                    <label htmlFor="nom">Nom</label>
+                    <OutlinedInput
+                        type='text'
+                        name='nom'
+                        placeholder="Nom"
+                        value={nom}
+                        onChange={(e) => setNom(e.target.value)}
+                    />
+                </div>
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={() => setIsOpen(false)} color="primary">
+                    Annuler
+                </Button>
+                <Button onClick={handleUpdateListe} color="primary" autoFocus>
+                    Confirmer
+                </Button>
+            </DialogActions>
+        </Dialog>
     );
 };
 

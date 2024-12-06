@@ -61,7 +61,7 @@ const ListeCard: FC<IListeCard> = ({ liste }) => {
         setIsOpen={setDeleteListeIsOpen}
         id={liste.getId()}
         url={ApiPaths.Liste.Delete}
-        message={liste.getNom()}
+        message="Voulez-vous vraiment supprimer cette liste de lecture ?"
       />
       <div className={styles['top-content']}>
         {liste.getNom()}

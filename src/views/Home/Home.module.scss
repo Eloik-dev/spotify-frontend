@@ -13,10 +13,14 @@
 
 main {
     display: grid;
-    grid-template-areas: "sidebar content";
+    grid-template-areas:
+        "sidebar topbar"
+        "sidebar content";
+    grid-template-rows: variables.$topbar-height 1fr;
     grid-template-columns: variables.$sidebar-width 1fr;
     gap: 10px;
     height: 100%;
     background-color: variables.$home-background;
     padding: variables.$home-padding;
+    overflow: hidden;
 }

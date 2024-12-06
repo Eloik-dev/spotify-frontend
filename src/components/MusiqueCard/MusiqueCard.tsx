@@ -54,9 +54,9 @@ const MusiqueCard: FC<IMusiqueCard> = ({ musique }) => {
       <DeletePopup
         isOpen={deleteMusiqueIsOpen}
         setIsOpen={setDeleteMusiqueIsOpen}
-        id={musique.getNom()}
+        id={musique.getId()}
         url={ApiPaths.Musiques.Delete}
-        message={musique.getNom()}
+        message="Voulez-vous vraiment supprimer cette musique ?"
       />
       <div className={styles['top-content']}>
         {musique.getNom()}

@@ -1,10 +1,10 @@
 import { FC, useState, useEffect, useContext } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, OutlinedInput, Checkbox } from '@mui/material';
-import styles from './ModifyMusiquePopup.module.scss'; // Adjust the path according to your project structure
+import styles from './ModifyMusiquePopup.module.scss';
 import useRequest from '../../../../hooks/useRequest';
 import ApiPaths from '../../../../common/ApiPaths';
-import ListeContainerContext from '../../../../context/ListeContainerContext';
 import MusiqueEntity from '../../../../entities/MusiqueEntity';
+import MusiqueContainerContext from '../../../../context/MusiqueContainerContext';
 
 interface IModifyMusiquePopupProps {
     isOpen: boolean;
@@ -13,7 +13,7 @@ interface IModifyMusiquePopupProps {
 }
 
 const ModifyMusiquePopup: FC<IModifyMusiquePopupProps> = ({ isOpen, setIsOpen, musique }) => {
-    const { getListes } = useContext(ListeContainerContext);
+    const { getMusiques } = useContext(MusiqueContainerContext);
     const { putRequest } = useRequest();
 
     const [nom, setNom] = useState(musique.getNom());
@@ -39,6 +39,7 @@ const ModifyMusiquePopup: FC<IModifyMusiquePopupProps> = ({ isOpen, setIsOpen, m
      */
     const handleUpdateMusique = async () => {
         const donnees = {
+            id: musique.getId(),
             nom,
             lien,
             artistes,
@@ -47,97 +48,100 @@ const ModifyMusiquePopup: FC<IModifyMusiquePopupProps> = ({ isOpen, setIsOpen, m
             archive,
             datePublication
         };
-        await putRequest(`${ApiPaths.Musiques.Update}/${musique.getNom()}`, donnees); // Assuming you have an ID or a unique identifier
+        await putRequest(`${ApiPaths.Musiques.Update}`, donnees);
 
         setIsOpen(false);
-        getListes();
+        getMusiques();
     };
 
     return (
-        <div>
-            <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
-                <DialogTitle>{"Modifier la musique"}</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        Veuillez entrer les nouvelles informations pour cette musique.
-                    </DialogContentText>
-                    <div className={styles['champ']}>
-                        <label htmlFor="nom">Nom</label>
-                        <OutlinedInput
-                            type='text'
-                            name='nom'
-                            placeholder="Nom"
-                            value={nom}
-                            onChange={(e) => setNom(e.target.value)}
-                        />
-                    </div>
-                    <div className={styles['champ']}>
-                        <label htmlFor="lien">Lien</label>
-                        <OutlinedInput
-                            type='text'
-                            name='lien'
-                            placeholder="Lien"
-                            value={lien}
-                            onChange={(e) => setLien(e.target.value)}
-                        />
-                    </div>
-                    <div className={styles['champ']}>
-                        <label htmlFor="artistes">Artistes</label>
-                        <OutlinedInput
-                            type='text'
-                            name='artistes'
-                            placeholder="Artistes (séparés par des virgules)"
-                            value={artistes.join(', ')}
-                            onChange={(e) => setArtistes(e.target.value.split(',').map(a => a.trim()))}
-                        />
-                    </div>
-                    <div className={styles['champ']}>
-                        <label htmlFor="likes">Likes</label>
-                        <OutlinedInput
-                            type='number'
-                            name='likes'
-                            placeholder="Likes"
-                            value={likes}
-                            onChange={(e) => setLikes(Number(e.target.value))}
-                        />
-                    </div>
-                    <div className={styles['champ']}>
-                        <label htmlFor="dislikes">Dislikes</label>
-                        <OutlinedInput
-                            type='number'
-                            name='dislikes'
-                            placeholder="Dislikes"
-                            value={dislikes}
-                            onChange={(e) => setDislikes(Number(e.target.value))}
-                        />
-                    </div>
-                    <div className={styles['champ']}>
-                        <label htmlFor="archive">Archive</label>
-                        <Checkbox
-                            checked={archive}
-                            onChange={(e) => setArchive(e.target.checked)}
-                        />
-                    </div>
-                    <div className={styles['champ']}>
-                        <label htmlFor="datePublication">Date de Publication</label>
-                        <OutlinedInput
-                            type='date'
-                            name='datePublication'
-                            value={datePublication.toISOString().split('T')[0]}
-                            onChange={(e) => setDatePublication(new Date(e.target.value))}
-                        />
-                    </div>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={() => setIsOpen(false)} color="primary">
-                        Annuler
-                    </Button>
-                    <Button onClick={handleUpdateMusique} color="primary" autoFocus>
-                        Confirmer
-                    </Button>
-                </DialogActions>
-            </Dialog>
-        </div>
+        <Dialog className='popup' open={isOpen} onClose={() => setIsOpen(false)}>
+            <DialogTitle>{"Modifier la musique"}</DialogTitle>
+            <DialogContent className='dialog-content'>
+                <DialogContentText>
+                    Veuillez entrer les nouvelles informations pour cette musique.
+                </DialogContentText>
+                <div className={'champ'}>
+                    <label htmlFor="nom">Nom</label>
+                    <OutlinedInput
+                        fullWidth
+                        type='text'
+                        name='nom'
+                        placeholder="Nom"
+                        value={nom}
+                        onChange={(e) => setNom(e.target.value)}
+                    />
+                </div>
+                <div className={'champ'}>
+                    <label htmlFor="lien">Lien</label>
+                    <OutlinedInput
+                        fullWidth
+                        type='text'
+                        name='lien'
+                        placeholder="Lien"
+                        value={lien}
+                        onChange={(e) => setLien(e.target.value)}
+                    />
+                </div>
+                <div className={'champ'}>
+                    <label htmlFor="artistes">Artistes</label>
+                    <OutlinedInput
+                        fullWidth
+                        type='text'
+                        name='artistes'
+                        placeholder="Artistes (séparés par des virgules)"
+                        value={artistes.join(', ')}
+                        onChange={(e) => setArtistes(e.target.value.split(',').map(a => a.trim()))}
+                    />
+                </div>
+                <div className={'champ'}>
+                    <label htmlFor="likes">Likes</label>
+                    <OutlinedInput
+                        fullWidth
+                        type='number'
+                        name='likes'
+                        placeholder="Likes"
+                        value={likes}
+                        onChange={(e) => setLikes(Number(e.target.value))}
+                    />
+                </div>
+                <div className={'champ'}>
+                    <label htmlFor="dislikes">Dislikes</label>
+                    <OutlinedInput
+                        fullWidth
+                        type='number'
+                        name='dislikes'
+                        placeholder="Dislikes"
+                        value={dislikes}
+                        onChange={(e) => setDislikes(Number(e.target.value))}
+                    />
+                </div>
+                <div className={'champ'}>
+                    <label htmlFor="archive">Archive</label>
+                    <Checkbox
+                        checked={archive}
+                        onChange={(e) => setArchive(e.target.checked)}
+                    />
+                </div>
+                <div className={'champ'}>
+                    <label htmlFor="datePublication">Date de Publication</label>
+                    <OutlinedInput
+                        type='date'
+                        name='datePublication'
+                        value={datePublication.toISOString().split('T')[0]}
+                        onChange={(e) => setDatePublication(new Date(e.target.value))}
+                    />
+                </div>
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={() => setIsOpen(false)} color="primary">
+                    Annuler
+                </Button>
+                <Button onClick={handleUpdateMusique} color="primary" autoFocus>
+                    Confirmer
+                </Button>
+            </DialogActions>
+        </Dialog>
     );
 };
 
