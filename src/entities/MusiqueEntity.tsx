@@ -161,7 +161,7 @@ export default class MusiqueEntity {
         return this;
     }
 
-    public static getEntity(data: any): MusiqueEntity {
+    public static toEntity(data: any): MusiqueEntity {
         return new MusiqueEntity()
             .setId(data._id || '')
             .setNom(data.nom || '')

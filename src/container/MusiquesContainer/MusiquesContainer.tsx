@@ -4,11 +4,12 @@ import MusiqueEntity from '../../entities/MusiqueEntity';
 import useRequest from '../../hooks/useRequest';
 import ApiPaths from '../../common/ApiPaths';
 import MusiqueContainerContext from '../../context/MusiqueContainerContext';
-import CreateMusiquePopup from '../../components/Popups/Musiques/CreateMusiquePopup/CreateMusiquePopup';
+import CreateMusiquePopup from '../../components/Popups/Musiques/CreateMusiquePopup';
 import Topbar from '../../components/Topbar/Topbar';
 import MusiqueCard from '../../components/MusiqueCard/MusiqueCard';
 import ListeEntity from '../../entities/ListeEntity';
 import { useNavigate } from 'react-router';
+import { FormattedMessage } from 'react-intl';
 
 /**
  * Cette composante contiendra toutes les informations d'une liste de musiques
@@ -19,7 +20,7 @@ export default function MusiquesContainer() {
 
   const [musiques, setMusiques] = useState<MusiqueEntity[]>([]);
   const [createMusiqueIsOpen, setCreateMusiqueIsOpen] = useState(false);
-  const { getRequest } = useRequest();
+  const { getRequest, postRequest } = useRequest();
 
   useEffect(() => {
     getMusiques();
@@ -31,7 +32,6 @@ export default function MusiquesContainer() {
   const getMusiques = async () => {
     const resultat = await getRequest(`${ApiPaths.Liste.Get}/${liste_id}`);
     const liste = ListeEntity.toEntity(resultat.data);
-
     setMusiques(liste.getMusiques());
   };
 
@@ -39,8 +39,10 @@ export default function MusiquesContainer() {
    * Effectue une recherche sur les musiques
    * @param recherche La recherche entrée
    */
-  const handleSearch = (recherche: string) => {
-    // Implement search logic here
+  const handleSearch = async (recherche: string) => {
+    const resultat = await postRequest(ApiPaths.Musiques.Search, { liste_id, recherche });
+    const nouvellesMusiques = resultat.data.map((musique: any) => MusiqueEntity.toEntity(musique));
+    setMusiques(nouvellesMusiques);
   }
 
   /**
@@ -64,7 +66,7 @@ export default function MusiquesContainer() {
       <div id={styles['musiques']}>
         {musiques.length === 0 ? (
           <div id={styles['emptyMessage']}>
-            Aucune musique trouvée
+            <FormattedMessage id="musiquesContainer.empty" />
           </div>
         ) : (
           musiques.map((musique, idx) => (

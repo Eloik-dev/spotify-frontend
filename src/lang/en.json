@@ -1,0 +1,35 @@
+{
+    "terms.cancel": "Cancel",
+    "terms.confirm": "Confirm",
+    "terms.search": "Search",
+    "terms.name": "Name",
+    "terms.link": "Link",
+    "terms.artists": "Artists",
+    "terms.likes": "Likes",
+    "terms.dislikes": "Dislikes",
+    "terms.archive": "Archived",
+    "terms.date": "Publication Date",
+
+
+    "login.title": "Log in to Speutifye",
+    "login.courriel": "Email",
+    "login.password": "Password",
+    "login.confirm": "Log in",
+
+    
+    "home.loading": "Loading...",
+    "home.redirect": "Redirecting to the login page...",
+
+
+    "musiquesContainer.empty": "No music in this list",
+    "createMusiquePopup.title": "Please enter the details of the new music.",
+    "deleteMusiquePopup.title": "Do you really want to delete this music?",
+    "modifyMusiquePopup.title": "Please enter the new music data.",
+
+
+    "listesContainer.empty": "No playlists found.",
+    "createListePopup.title": "Please enter a name for your new playlist.",
+    "deleteListePopup.title": "Do you really want to delete this playlist?",
+    "modifyListePopup.title": "Do you really want to delete this playlist?",
+    "listeCard.nbMusiques": "Contains {nbMusiques} songs"
+}

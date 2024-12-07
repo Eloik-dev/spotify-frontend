@@ -8,6 +8,7 @@ import ModifyListePopup from '../Popups/Listes/ModifyListePopup/ModifyListePopup
 import DeletePopup from '../Popups/DeletePopup/DeletePopup';
 import ApiPaths from '../../common/ApiPaths';
 import { useNavigate } from 'react-router';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 interface IListeCard {
   liste: ListeEntity;
@@ -17,6 +18,7 @@ interface IListeCard {
  * La barre supérieure permettant la sélection/modification/suppression de listes de lecture
  */
 const ListeCard: FC<IListeCard> = ({ liste }) => {
+  const intl = useIntl();
   const navigate = useNavigate();
   const [modifyListeIsOpen, setModifyListeIsOpen] = useState(false);
   const [deleteListeIsOpen, setDeleteListeIsOpen] = useState(false);
@@ -61,7 +63,7 @@ const ListeCard: FC<IListeCard> = ({ liste }) => {
         setIsOpen={setDeleteListeIsOpen}
         id={liste.getId()}
         url={ApiPaths.Liste.Delete}
-        message="Voulez-vous vraiment supprimer cette liste de lecture ?"
+        message={intl.formatMessage({ id: 'deleteListePopup.title' })}
       />
       <div className={styles['top-content']}>
         {liste.getNom()}
@@ -76,7 +78,10 @@ const ListeCard: FC<IListeCard> = ({ liste }) => {
       </div>
       <hr />
       <div className={styles['bottom-content']}>
-        Contient {liste.getNbMusiques()} musiques
+        <FormattedMessage
+          id="listCard.nbMusiques"
+          values={{ nbMusiques: liste.getNbMusiques() }}
+        />
       </div>
     </div>
   );

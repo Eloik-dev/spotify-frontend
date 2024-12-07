@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import UtilisateurContext from "../../context/UtilisateurContext";
 import styles from './Home.module.scss';
 import MusiquesContainer from "../../container/MusiquesContainer/MusiquesContainer";
+import { FormattedMessage } from "react-intl";
 
 /**
  * Cette vue contrôlera l'affichage de la barre de navigation et la liste de lecture
@@ -29,7 +30,9 @@ export default function Home() {
   if (loading) {
     return (
       <div className={styles['status-text-container']}>
-        <div id={styles['statusText']}>Chargement en cours...</div>
+        <div id={styles['statusText']}>
+          <FormattedMessage id="home.loading" />
+        </div>
       </div>
     );
   }
@@ -37,7 +40,9 @@ export default function Home() {
   if (!user) {
     return (
       <div className={styles['status-text-container']}>
-        <div id={styles['statusText']}>Redirection vers la page de connexion...</div>
+        <div id={styles['statusText']}>
+          <FormattedMessage id="home.redirect" />
+        </div>
       </div>
     );
   }

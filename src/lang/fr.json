@@ -1,0 +1,35 @@
+{
+    "terms.cancel": "Annuler",
+    "terms.confirm": "Confirmer",
+    "terms.search": "Rechercher",
+    "terms.name": "Nom",
+    "terms.link": "Lien",
+    "terms.artists": "Artistes",
+    "terms.likes": "Jaimes",
+    "terms.dislikes": "Je détestes",
+    "terms.archive": "Archivé",
+    "terms.date": "Date de publication",
+
+
+    "login.title": "Se connecter à Speutifye",
+    "login.courriel": "Courriel",
+    "login.password": "Mot de passe",
+    "login.confirm": "Se connecter",
+
+
+    "home.loading": "Chargement en cours...",
+    "home.redirect": "Redirection vers la page de connexion...",
+
+
+    "musiquesContainer.empty": "Aucune musique dans cette liste",
+    "createMusiquePopup.title": "Veuillez entrer les détails de la nouvelle musique.",
+    "deleteMusiquePopup.title": "Voulez-vous vraiment supprimer cette musique ?",
+    "modifyMusiquePopup.title": "Veuillez entrer les nouvelles données de la musique.",
+    
+
+    "listesContainer.empty": "Aucune liste trouvée.",
+    "createListePopup.title": "Veuillez entrer un nom pour votre nouvelle liste de lecture.",
+    "deleteListePopup.title": "Voulez-vous vraiment supprimer cette liste de lecture ?",
+    "modifyListePopup.title": "Voulez-vous vraiment supprimer cette liste de lecture ?",
+    "listeCard.nbMusiques": "Contient {nbMusiques} musiques"
+}

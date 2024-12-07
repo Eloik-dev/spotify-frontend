@@ -1,10 +1,10 @@
 import { FC, useState, useEffect, useContext } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, OutlinedInput, Checkbox } from '@mui/material';
-import styles from './ModifyMusiquePopup.module.scss';
-import useRequest from '../../../../hooks/useRequest';
-import ApiPaths from '../../../../common/ApiPaths';
-import MusiqueEntity from '../../../../entities/MusiqueEntity';
-import MusiqueContainerContext from '../../../../context/MusiqueContainerContext';
+import useRequest from '../../../hooks/useRequest';
+import ApiPaths from '../../../common/ApiPaths';
+import MusiqueEntity from '../../../entities/MusiqueEntity';
+import MusiqueContainerContext from '../../../context/MusiqueContainerContext';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 interface IModifyMusiquePopupProps {
     isOpen: boolean;
@@ -13,6 +13,7 @@ interface IModifyMusiquePopupProps {
 }
 
 const ModifyMusiquePopup: FC<IModifyMusiquePopupProps> = ({ isOpen, setIsOpen, musique }) => {
+    const intl = useIntl();
     const { getMusiques } = useContext(MusiqueContainerContext);
     const { putRequest } = useRequest();
 
@@ -59,72 +60,86 @@ const ModifyMusiquePopup: FC<IModifyMusiquePopupProps> = ({ isOpen, setIsOpen, m
             <DialogTitle>{"Modifier la musique"}</DialogTitle>
             <DialogContent className='dialog-content'>
                 <DialogContentText>
-                    Veuillez entrer les nouvelles informations pour cette musique.
+                    <FormattedMessage id="modifyMusiquePopup.title" />
                 </DialogContentText>
                 <div className={'champ'}>
-                    <label htmlFor="nom">Nom</label>
+                    <label htmlFor="nom">
+                        <FormattedMessage id="terms.name" />
+                    </label>
                     <OutlinedInput
                         fullWidth
                         type='text'
                         name='nom'
-                        placeholder="Nom"
+                        placeholder={intl.formatMessage({ id: 'terms.name' })}
                         value={nom}
                         onChange={(e) => setNom(e.target.value)}
                     />
                 </div>
                 <div className={'champ'}>
-                    <label htmlFor="lien">Lien</label>
+                    <label htmlFor="lien">
+                        <FormattedMessage id="terms.link" />
+                    </label>
                     <OutlinedInput
                         fullWidth
                         type='text'
                         name='lien'
-                        placeholder="Lien"
+                        placeholder={intl.formatMessage({ id: 'terms.link' })}
                         value={lien}
                         onChange={(e) => setLien(e.target.value)}
                     />
                 </div>
                 <div className={'champ'}>
-                    <label htmlFor="artistes">Artistes</label>
+                    <label htmlFor="artistes">
+                        <FormattedMessage id="terms.artists" />
+                    </label>
                     <OutlinedInput
                         fullWidth
                         type='text'
                         name='artistes'
-                        placeholder="Artistes (séparés par des virgules)"
+                        placeholder={intl.formatMessage({ id: 'terms.artists' })}
                         value={artistes.join(', ')}
                         onChange={(e) => setArtistes(e.target.value.split(',').map(a => a.trim()))}
                     />
                 </div>
                 <div className={'champ'}>
-                    <label htmlFor="likes">Likes</label>
+                    <label htmlFor="likes">
+                        <FormattedMessage id="terms.likes" />
+                    </label>
                     <OutlinedInput
                         fullWidth
                         type='number'
                         name='likes'
-                        placeholder="Likes"
+                        placeholder={intl.formatMessage({ id: 'terms.likes' })}
                         value={likes}
                         onChange={(e) => setLikes(Number(e.target.value))}
                     />
                 </div>
                 <div className={'champ'}>
-                    <label htmlFor="dislikes">Dislikes</label>
+                    <label htmlFor="dislikes">
+                        <FormattedMessage id="terms.dislikes" />
+                    </label>
                     <OutlinedInput
                         fullWidth
                         type='number'
                         name='dislikes'
-                        placeholder="Dislikes"
+                        placeholder={intl.formatMessage({ id: 'terms.dislikes' })}
                         value={dislikes}
                         onChange={(e) => setDislikes(Number(e.target.value))}
                     />
                 </div>
                 <div className={'champ'}>
-                    <label htmlFor="archive">Archive</label>
+                    <label htmlFor="archive">
+                        <FormattedMessage id="terms.archive" />
+                    </label>
                     <Checkbox
                         checked={archive}
                         onChange={(e) => setArchive(e.target.checked)}
                     />
                 </div>
                 <div className={'champ'}>
-                    <label htmlFor="datePublication">Date de Publication</label>
+                    <label htmlFor="datePublication">
+                        <FormattedMessage id="terms.date" />
+                    </label>
                     <OutlinedInput
                         type='date'
                         name='datePublication'
@@ -135,10 +150,10 @@ const ModifyMusiquePopup: FC<IModifyMusiquePopupProps> = ({ isOpen, setIsOpen, m
             </DialogContent>
             <DialogActions>
                 <Button onClick={() => setIsOpen(false)} color="primary">
-                    Annuler
+                    <FormattedMessage id="terms.cancel" />
                 </Button>
                 <Button onClick={handleUpdateMusique} color="primary" autoFocus>
-                    Confirmer
+                    <FormattedMessage id="terms.confirm" />
                 </Button>
             </DialogActions>
         </Dialog>

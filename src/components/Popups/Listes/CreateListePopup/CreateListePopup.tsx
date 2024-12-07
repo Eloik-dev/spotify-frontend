@@ -1,9 +1,9 @@
 import { FC, useContext, useState } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, OutlinedInput } from '@mui/material';
-import styles from './CreateListePopup.module.scss'; // Adjust the path according to your project structure
 import useRequest from '../../../../hooks/useRequest';
 import ApiPaths from '../../../../common/ApiPaths';
 import ListeContainerContext from '../../../../context/ListeContainerContext';
+import { FormattedMessage } from 'react-intl';
 
 interface ICreateListePopupProps {
     isOpen: boolean;
@@ -33,10 +33,12 @@ const CreateListePopup: FC<ICreateListePopupProps> = ({ isOpen, setIsOpen }) => 
             <DialogTitle>{"Créer une nouvelle playlist"}</DialogTitle>
             <DialogContent className='dialog-content'>
                 <DialogContentText>
-                    Veuillez entrer un nom pour votre nouvelle liste de lecture.
+                    <FormattedMessage id="createListePopup.title" />
                 </DialogContentText>
                 <div className={'champ'}>
-                    <label htmlFor="nom">Nom</label>
+                    <label htmlFor="nom">
+                        <FormattedMessage id="terms.name" />
+                    </label>
                     <OutlinedInput
                         type='text'
                         name='nom'
@@ -48,10 +50,10 @@ const CreateListePopup: FC<ICreateListePopupProps> = ({ isOpen, setIsOpen }) => 
             </DialogContent>
             <DialogActions>
                 <Button onClick={() => setIsOpen(false)} color="primary">
-                    Annuler
+                    <FormattedMessage id="terms.cancel" />
                 </Button>
                 <Button onClick={handleCreateListe} color="primary" autoFocus>
-                    Confirmer
+                    <FormattedMessage id="terms.confirm" />
                 </Button>
             </DialogActions>
         </Dialog>

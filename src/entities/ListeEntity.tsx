@@ -74,7 +74,6 @@ export default class ListeEntity {
      * @return ListeEntity
      */
     public static toEntity(data: any): ListeEntity {
-        console.log(data)
         const listeEntity = new ListeEntity()
             .setId(data._id || '')
             .setNom(data.nom || '');
@@ -82,7 +81,7 @@ export default class ListeEntity {
         // Set the musiques
         if (Array.isArray(data.musiques)) {
             const musiques = data.musiques.map((musiqueData: any) => {
-                return MusiqueEntity.getEntity(musiqueData)
+                return MusiqueEntity.toEntity(musiqueData)
             });
             listeEntity.setMusiques(musiques);
         }

@@ -1,8 +1,9 @@
 import { FC, useContext, useState } from 'react';
 import { Button, Checkbox, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, OutlinedInput } from '@mui/material';
-import useRequest from '../../../../hooks/useRequest';
-import ApiPaths from '../../../../common/ApiPaths';
-import MusiqueContainerContext from '../../../../context/MusiqueContainerContext';
+import useRequest from '../../../hooks/useRequest';
+import ApiPaths from '../../../common/ApiPaths';
+import MusiqueContainerContext from '../../../context/MusiqueContainerContext';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 interface ICreateMusiquePopupProps {
     isOpen: boolean;
@@ -10,6 +11,7 @@ interface ICreateMusiquePopupProps {
 }
 
 const CreateMusiquePopup: FC<ICreateMusiquePopupProps> = ({ isOpen, setIsOpen }) => {
+    const intl = useIntl();
     const liste_id = window.location.pathname.split('/')[2];
     const { getMusiques } = useContext(MusiqueContainerContext);
     const { postRequest } = useRequest();
@@ -47,60 +49,72 @@ const CreateMusiquePopup: FC<ICreateMusiquePopupProps> = ({ isOpen, setIsOpen })
             <DialogTitle>{"Créer une nouvelle musique"}</DialogTitle>
             <DialogContent className='dialog-content'>
                 <DialogContentText>
-                    Veuillez entrer les détails de la nouvelle musique.
+                    <FormattedMessage id="createMusiquePopup.title" />
                 </DialogContentText>
                 <div className={'champ'}>
-                    <label htmlFor="nom">Nom</label>
+                    <label htmlFor="nom">
+                        <FormattedMessage id="terms.name" />
+                    </label>
                     <OutlinedInput
                         type='text'
                         name='nom'
-                        placeholder="Nom"
+                        placeholder={intl.formatMessage({ id: 'terms.name' })}
                         value={nom}
                         onChange={(e) => setNom(e.target.value)}
                     />
                 </div>
                 <div className={'champ'}>
-                    <label htmlFor="lien">Lien</label>
+                    <label htmlFor="lien">
+                        <FormattedMessage id="terms.link" />
+                    </label>
                     <OutlinedInput
                         type='text'
                         name='lien'
-                        placeholder="Lien"
+                        placeholder={intl.formatMessage({ id: 'terms.link' })}
                         value={lien}
                         onChange={(e) => setLien(e.target.value)}
                     />
                 </div>
                 <div className={'champ'}>
-                    <label htmlFor="artistes">Artistes</label>
+                    <label htmlFor="artistes">
+                        <FormattedMessage id="terms.artists" />
+                    </label>
                     <OutlinedInput
                         type='text'
                         name='artistes'
-                        placeholder="Artistes (séparés par des virgules)"
+                        placeholder={intl.formatMessage({ id: 'terms.artists' })}
                         value={artistes.join(', ')}
                         onChange={(e) => setArtistes(e.target.value.split(',').map(a => a.trim()))}
                     />
                 </div>
                 <div className={'champ'}>
-                    <label htmlFor="likes">Likes</label>
+                    <label htmlFor="likes">
+                        <FormattedMessage id="terms.artists" />
+                    </label>
                     <OutlinedInput
                         type='number'
                         name='likes'
-                        placeholder="Likes"
+                        placeholder={intl.formatMessage({ id: 'terms.likes' })}
                         value={likes}
                         onChange={(e) => setLikes(Number(e.target.value))}
                     />
                 </div>
                 <div className={'champ'}>
-                    <label htmlFor="dislikes">Dislikes</label>
+                    <label htmlFor="dislikes">
+                        <FormattedMessage id="terms.dislikes" />
+                    </label>
                     <OutlinedInput
                         type='number'
                         name='dislikes'
-                        placeholder="Dislikes"
+                        placeholder={intl.formatMessage({ id: 'terms.dislikes' })}
                         value={dislikes}
                         onChange={(e) => setDislikes(Number(e.target.value))}
                     />
                 </div>
                 <div className={'champ'}>
-                    <label htmlFor="archive">Archive</label>
+                    <label htmlFor="archive">
+                        <FormattedMessage id="terms.archive" />
+                    </label>
                     <Checkbox
                         name='archive'
                         checked={archive}
@@ -108,7 +122,9 @@ const CreateMusiquePopup: FC<ICreateMusiquePopupProps> = ({ isOpen, setIsOpen })
                     />
                 </div>
                 <div className={'champ'}>
-                    <label htmlFor="datePublication">Date de Publication</label>
+                    <label htmlFor="datePublication">
+                        <FormattedMessage id="terms.date" />
+                    </label>
                     <OutlinedInput
                         type='date'
                         name='datePublication'
@@ -119,10 +135,10 @@ const CreateMusiquePopup: FC<ICreateMusiquePopupProps> = ({ isOpen, setIsOpen })
             </DialogContent>
             <DialogActions>
                 <Button onClick={() => setIsOpen(false)} color="primary">
-                    Annuler
+                    <FormattedMessage id="terms.cancel" />
                 </Button>
                 <Button onClick={handleCreateMusique} color="primary" autoFocus>
-                    Confirmer
+                    <FormattedMessage id="terms.confirm" />
                 </Button>
             </DialogActions>
         </Dialog>

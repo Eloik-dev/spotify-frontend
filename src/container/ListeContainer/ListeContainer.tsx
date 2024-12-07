@@ -7,6 +7,7 @@ import ListeCard from '../../components/ListeCard/ListeCard';
 import CreateListePopup from '../../components/Popups/Listes/CreateListePopup/CreateListePopup';
 import ListeEntity from '../../entities/ListeEntity';
 import ListeContainerContext from '../../context/ListeContainerContext';
+import { FormattedMessage } from 'react-intl';
 
 /**
  * Cette composante contiendra toutes les informations d'une liste de lecture
@@ -14,7 +15,7 @@ import ListeContainerContext from '../../context/ListeContainerContext';
 export default function ListeContainer() {
   const [listes, setListes] = useState<ListeEntity[]>([]);
   const [createListeIsOpen, setCreateListeIsOpen] = useState(false);
-  const { getRequest } = useRequest();
+  const { getRequest, postRequest } = useRequest();
 
   useEffect(() => {
     getListes();
@@ -33,7 +34,10 @@ export default function ListeContainer() {
    * Effectue une recherche sur les listes de lecture
    * @param recherche La recherche entrée
    */
-  const handleSearch = (recherche: string) => {
+  const handleSearch = async (recherche: string) => {
+    const resultat = await postRequest(ApiPaths.Liste.Search, { recherche });
+    const nouvellesListes = resultat.data.map((liste: any) => ListeEntity.toEntity(liste));
+    setListes(nouvellesListes);
   }
 
   /**
@@ -50,7 +54,7 @@ export default function ListeContainer() {
       <div id={styles['listes']}>
         {listes.length === 0 ? (
           <div id={styles['emptyMessage']}>
-            Aucune liste trouvée
+            <FormattedMessage id="listesContainer.empty" />
           </div>
         ) : (
           listes.map((liste, idx) => (

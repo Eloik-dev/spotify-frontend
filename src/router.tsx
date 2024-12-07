@@ -9,7 +9,7 @@ import Login from './views/Login/Login';
  */
 export default function Router() {
     /**
-     * Create routes for login, register and /
+     * Créer les routes pour la connexion, la page d'accueil et la page de la liste de lecture
      */
     const routes = useMemo(() => {
         return [

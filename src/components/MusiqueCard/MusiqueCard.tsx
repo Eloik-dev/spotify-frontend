@@ -6,7 +6,8 @@ import { Button } from '@mui/material';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import DeletePopup from '../Popups/DeletePopup/DeletePopup';
 import ApiPaths from '../../common/ApiPaths';
-import ModifyMusiquePopup from '../Popups/Musiques/ModifyMusiquePopup/ModifyMusiquePopup';
+import ModifyMusiquePopup from '../Popups/Musiques/ModifyMusiquePopup';
+import { useIntl } from 'react-intl';
 
 interface IMusiqueCard {
   musique: MusiqueEntity;
@@ -16,6 +17,7 @@ interface IMusiqueCard {
  * La carte permettant la sélection/modification/suppression de musiques
  */
 const MusiqueCard: FC<IMusiqueCard> = ({ musique }) => {
+  const intl = useIntl();
   const [modifyMusiqueIsOpen, setModifyMusiqueIsOpen] = useState(false);
   const [deleteMusiqueIsOpen, setDeleteMusiqueIsOpen] = useState(false);
 
@@ -56,7 +58,7 @@ const MusiqueCard: FC<IMusiqueCard> = ({ musique }) => {
         setIsOpen={setDeleteMusiqueIsOpen}
         id={musique.getId()}
         url={ApiPaths.Musiques.Delete}
-        message="Voulez-vous vraiment supprimer cette musique ?"
+        message={intl.formatMessage({ id: 'deleteMusiquePopup.title' })}
       />
       <div className={styles['top-content']}>
         {musique.getNom()}
@@ -71,11 +73,11 @@ const MusiqueCard: FC<IMusiqueCard> = ({ musique }) => {
       </div>
       <hr />
       <div className={styles['bottom-content']}>
-        Lien: {musique.getLien()} <br />
-        Artistes: {musique.getArtistes().join(', ')} <br />
-        Likes: {musique.getLikes()} <br />
-        Dislikes: {musique.getDislikes()} <br />
-        Date de Publication: {musique.getDatePublication().toLocaleDateString()}
+        {intl.formatMessage({ id: 'terms.link' })}: {musique.getLien()} <br />
+        {intl.formatMessage({ id: 'terms.artists' })}: {musique.getArtistes().join(', ')} <br />
+        {intl.formatMessage({ id: 'terms.likes' })}: {musique.getLikes()} <br />
+        {intl.formatMessage({ id: 'terms.dislikes' })}: {musique.getDislikes()} <br />
+        {intl.formatMessage({ id: 'terms.date' })}: {musique.getDatePublication().toLocaleDateString()}
       </div>
     </div>
   );

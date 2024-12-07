@@ -6,6 +6,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, logInWithEmailAndPassword } from '../../firebase';
 import { useNavigate } from 'react-router';
 import { FormEvent, useEffect, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 
 /**
  * Affiche la page de connexion
@@ -38,20 +39,28 @@ export default function Login() {
       <form onSubmit={handleConnexion} className={styles['inner-box']}>
         <div className={styles['header']}>
           <FontAwesomeIcon className='speutifye-icon' icon={faSpotify} />
-          <h1>Se connecter à Speutifye</h1>
+          <h1>
+            <FormattedMessage id="login.title" />
+          </h1>
         </div>
         <hr className={styles['separateur']} />
         <div className={styles['champs-container']}>
-          <div className={'champ'}>
-            <label htmlFor="email">Courriel</label>
-            <OutlinedInput type='email' name='email' placeholder="Courriel" onChange={(e) => setEmail(e.target.value)}></OutlinedInput>
+          <div className={styles['champ']}>
+            <label htmlFor="email">
+              <FormattedMessage id="login.courriel" />
+            </label>
+            <OutlinedInput type='email' name='email' placeholder="Courriel" onChange={(e) => setEmail(e.target.value)} />
           </div>
-          <div className={'champ'}>
-            <label htmlFor="password">Mot de passe</label>
-            <OutlinedInput type='password' name='password' placeholder="Mot de passe" onChange={(e) => setPassword(e.target.value)}></OutlinedInput>
+          <div className={styles['champ']}>
+            <label htmlFor="password">
+              <FormattedMessage id="login.password" />
+            </label>
+            <OutlinedInput type='password' name='password' placeholder="Mot de passe" onChange={(e) => setPassword(e.target.value)} />
           </div>
         </div>
-        <Button type='submit' id={styles['boutonConnexion']} variant='outlined'>Se connecter</Button>
+        <Button type='submit' id={styles['boutonConnexion']} variant='outlined'>
+          <FormattedMessage id="login.confirm" />
+        </Button>
       </form>
     </div>
   )
