@@ -5,7 +5,6 @@ import Router from './router'
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material'
 import { IntlProvider } from 'react-intl'
 import Francais from './lang/fr.json';
-import Anglais from './lang/en.json';
 
 const darkTheme = createTheme({
   palette: {

@@ -1,6 +1,5 @@
 import { FC, useState, useEffect, useContext } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, OutlinedInput } from '@mui/material';
-import styles from './ModifyListePopup.module.scss'; // Adjust the path according to your project structure
 import useRequest from '../../../../hooks/useRequest';
 import ApiPaths from '../../../../common/ApiPaths';
 import ListeContainerContext from '../../../../context/ListeContainerContext';
