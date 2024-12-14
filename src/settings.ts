@@ -1,3 +1,3 @@
 export default {
-    ApiPath: 'http://localhost:3000'
-}
+    ApiPath: 'https://spotify-api-t78j.onrender.com'
+} 

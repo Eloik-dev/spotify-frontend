@@ -79,7 +79,7 @@ const ListeCard: FC<IListeCard> = ({ liste }) => {
       <hr />
       <div className={styles['bottom-content']}>
         <FormattedMessage
-          id="listCard.nbMusiques"
+          id="listeCard.nbMusiques"
           values={{ nbMusiques: liste.getNbMusiques() }}
         />
       </div>
